@@ -6,7 +6,7 @@ function ModalWindow() {
   return (
     <>
     <div style={{display:block}} className='modal'>
-      <p style={{color:'gray'}}>Parol must include number und letter</p>
+      <p style={{color:'gray'}}>Parol must include number</p>
 
     </div>
     <Parol block={block} func={setBlock}/>

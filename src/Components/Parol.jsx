@@ -1,18 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "../Style/App.css";
-// import ModalWindow from './ModalWindow';
+
 
 function Parol(props) {
   const [parol, setParol] = useState("password");
   const [paroll, setParoll] = useState('');
-  const [blockRed, setBlockRed] = useState('none');
-  const [blockYellow, setBlockYellow] = useState('none');
-  const [blockGreen, setBlockGreen] = useState('none');
-
-// console.log(blockRed);
-
-// console.log(blockYellow);
-// console.log(blockGreen);
 
   function handleSubmit(e){
     e.preventDefault();
@@ -20,30 +12,13 @@ function Parol(props) {
     setParoll(inputVale)
     // e.target.reset();
   }
-  // if(paroll.length>0){
-  //   setBlock('block')
-  // }
+  
+
+  let parolData = paroll;
+  let parolCheck = /[0-9]/.test(parolData);
+  // console.log(parolCheck);
   let length = paroll.length;
-  // console.log(length);
 
-  function changeBlock(){
-  if(length<3){
-   setBlockRed('block')
-   setBlockGreen('none')
-   setBlockYellow('none')
-    }
-  else if(length>=3 && length<6){
-  setBlockYellow('block')
-  setBlockRed('none')
-  setBlockGreen('none')
-  }else if(length>=6){
-   setBlockGreen('block')
-   setBlockYellow('none')
-   setBlockRed('none')
-    }
-  }
-
-  // const changer = props.func;
   function showParol() {
     if (parol === "password") {
       setParol("text");
@@ -52,21 +27,6 @@ function Parol(props) {
     }
   }
 
-  // function hideParol(){
-  //   setParol('password')
-
-  //   }
-  // useEffect(function changeBlock(){
-  //   if(length>=0){
-  //    return setBlockRed('block')
-  //     }
-  //   else if(length>=3 && length<=6){
-  //    return setBlockYellow('block');
-  //   }else{
-  //     return setBlockGreen('block')
-      
-  //     }
-  //   },[])
 
   return (
     <>
@@ -99,32 +59,30 @@ function Parol(props) {
           
   
               <div style={{display:"flex", justifyContent:"center"}}>
-              <div style={{display:blockRed, backgroundColor:'red', height:'2px', width:"80px"}}>
+              <div style={{display:length>0 && length<5?"block":"none", backgroundColor:'red', height:'2px', width:"80px"}}>
                 <p style={{color:'red'}}>easy</p>
               </div>
-              <div style={{display:blockYellow, backgroundColor:'yellow', height:'2px', width:"80px"}}>
+              <div style={{display:length>=5 && length<=7?"block":"none", backgroundColor:'yellow', height:'2px', width:"80px"}}>
                 <p style={{color:'yellow'}}>normal</p>
               </div>
-              <div style={{display:blockGreen, backgroundColor:'green', height:'2px', width:"80px"}}>
+              <div style={{display:length>7?"block":"none", backgroundColor:'green', height:'2px', width:"80px"}}>
                 <p style={{color:'green'}}>strong</p>
               </div>
     
               </div>
-
-          
-            
-             
-            
-         
-
-          
 
           <div style={{ textAlign: "center", margin:'20px' }}>
             <input onClick={showParol} type="checkbox" />
             <p>Show parol</p>
           </div>
           <div style={{ textAlign: "center", margin:'20px' }}>
-            <button onClick={changeBlock}  >Check parol</button>
+            <div style={{display:parolCheck?"block":"none", color:"white", margin:"10px"}}>
+            <p>Parol include number</p>
+            </div>
+            <div>
+            <button  >Check parol</button>
+            </div>
+           
           </div>
         </form>
       </div>
